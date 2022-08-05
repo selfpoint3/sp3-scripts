@@ -15,6 +15,23 @@
         process.exit(-1)
     }
 
+    /**
+     * Check cmd arguments
+     * 
+     * 
+     */
+
+     program.option('--test')
+     program.parse();
+     const options = program.opts();
+
+     const { test = false } = options;
+   
+    if( test ) {
+        console.log('We are running in test mode.')
+    }
+
+
     const questions = [
         {
             type: "input",
@@ -46,6 +63,15 @@
 
                 return true
             }
+        },
+        {
+            type: 'checkbox',
+            name: 'pageTypes',
+            message: 'Which page-types to support?',
+            choices: [ "form", "view","doc","viewTemplate", "admin", "doc" ],
+            default: ["form","view"]
+
+
         }
     ]
 
@@ -54,7 +80,7 @@
     console.log('answers', answers)
 
 
-    const { name } = answers;
+    const { name, pageTypes } = answers;
 
     if (!name) {
         _die({ msg: 'Component must have a name' })
@@ -66,7 +92,7 @@
      * check if component / directory exists
      */
 
-    const dir = `${process.cwd()}/src/components/${name}`
+    const dir = test ? `${process.cwd()}/tmp/components/${name}` : `${process.cwd()}/src/components/${name}`
 
     if (await fs.existsSync(dir)) {
         _die({ msg: 'Component already exists' })
@@ -76,13 +102,13 @@
      * create component directory
      */
     try {
-        await fs.mkdirSync(dir, true);
+        await fs.mkdirSync(dir, {recursive : true});
 
         // generate stories
         const _stories = require('./templates/stories')
         await fs.writeFileSync(`${dir}/index.stories.js`, _stories(name))
         const _config = require('./templates/config')
-        await fs.writeFileSync(`${dir}/config.js`, _config(name))
+        await fs.writeFileSync(`${dir}/config.json`, _config(name, pageTypes ))
         const _index = require('./templates/index')
         await fs.writeFileSync(`${dir}/index.js`, _index(name))
 
