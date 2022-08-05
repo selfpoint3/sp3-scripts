@@ -32,6 +32,7 @@ async function discoverExports() {
         // open config.json file
         let config
         try {
+            console.log('PWD:', process.cwd())
             config = require(`../../src/components/${directory}/config.json`)
         } catch (err) {
             console.error(`config.json not found or contains errors for component ${directory}`, err)
