@@ -1,4 +1,4 @@
-const storybookBoilerplate = require('./src/storybookBoilerplate')
+const storybookBoilerplate = require('./src/storybookBoilerplate').default
 
 module.exports = {
     storybookBoilerplate
