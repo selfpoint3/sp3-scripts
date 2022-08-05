@@ -1,5 +1,6 @@
-const storybookBoilerplate = require('./src/storybookBoilerplate').default
+const storybookBoilerplate = require('./src/storybookBoilerplate')
 
 module.exports = {
-    storybookBoilerplate
+    storybookBoilerplate : storybookBoilerplate.default,
+    test: () => console.log('test')
 }
