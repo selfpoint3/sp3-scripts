@@ -34,7 +34,7 @@ async function discoverExports() {
         try {
             config = require(`../../src/components/${directory}/config.json`)
         } catch (err) {
-            console.error(`config.json not found or contains errors for component ${directory}`)
+            console.error(`config.json not found or contains errors for component ${directory}`, err)
             return
         }
 
