@@ -68,4 +68,4 @@ const boilerplate = (Component, title) => {
     }
 }
 
-export default boilerplate
+module.exports = boilerplate
