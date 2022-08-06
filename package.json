@@ -1,6 +1,6 @@
 {
   "name": "sp3-scripts",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Build scripts for sp3 SDK",
   "main": "index.js",
   "scripts": {
