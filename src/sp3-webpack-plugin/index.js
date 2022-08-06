@@ -42,7 +42,7 @@
                  if( ! await fs.existsSync('./dist')) {
                      await fs.mkdirSync('./dist', {});
                  }
-                 await zipDirectory('./_dist/effects','./dist/effects.zip')
+                 await zipDirectory('./_dist/effects','./_dist/effects.zip')
                  await zipDirectory('./_dist','./dist/bundle.zip')
                //  await fs.rmSync('./_dist', { recursive: true, force: true });
  
